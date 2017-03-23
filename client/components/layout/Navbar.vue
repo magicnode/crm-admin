@@ -12,7 +12,7 @@
             <img src="~assets/logo.svg" :alt="pkginfo.description">
             <tooltip :label="'v' + pkginfo.version" placement="right" type="success" size="small" :no-animate="true" :always="true" :rounded="true">
               <div class="is-hidden-mobile">
-                <span class="vue">Vue</span><strong class="admin">Admin</strong>
+                <span class="vue">低值易耗品</span><strong class="admin">管理平台</strong>
               </div>
             </tooltip>
           </a>
