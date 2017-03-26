@@ -33,12 +33,13 @@
     "test": "echo lol"
   },
   "dependencies": {
-    "animate.css": "3.5.2",
+    "animate.css": "^3.5.2",
     "animejs": "^2.0.1",
     "axios": "^0.15.3",
-    "bulma": "^0.3.2",
+    "bulma": "0.3.2",
     "font-awesome": "4.7.0",
     "mdi": "^1.8.36",
+    "node-sass": "^4.5.1",
     "plotly.js": "^1.24.2",
     "vue": "^2.2.2",
     "vue-bulma-brace": "^0.1.0",

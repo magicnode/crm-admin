@@ -1,9 +1,11 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-// import charts from './charts'
-// import uifeatures from './uifeatures'
-// import components from './components'
-// import tables from './tables'
+import lists from './lists'
+import characters from './characters'
+import charts from './charts'
+import uifeatures from './uifeatures'
+import components from './components'
+import tables from './tables'
 
 // show: meta.label -> name
 // name: component name
@@ -11,6 +13,26 @@ import lazyLoading from './lazyLoading'
 
 const state = {
   items: [
+    {
+      name: '主页',
+      path: '/main',
+      meta: {
+        icon: 'fa-tachometer',
+        link: 'dashboard/index.vue'
+      },
+      component: lazyLoading('dashboard', true)
+    },
+    characters,
+    lists,
+    {
+      name: '库房',
+      path: '/storeroom',
+      meta: {
+        icon: 'fa-tachometer',
+        link: 'dashboard/index.vue'
+      },
+      component: lazyLoading('dashboard', true)
+    },
     {
       name: 'Dashboard',
       path: '/dashboard',
@@ -28,11 +50,11 @@ const state = {
         link: 'axios/index.vue'
       },
       component: lazyLoading('axios', true)
-    }
-    // charts,
-    // uifeatures,
-    // components,
-    // tables
+    },
+    charts,
+    uifeatures,
+    components,
+    tables
   ]
 }
 

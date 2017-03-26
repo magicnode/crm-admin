@@ -34,6 +34,7 @@ module.exports = {
       assets: path.resolve(__dirname, '../client/assets'),
       components: path.resolve(__dirname, '../client/components'),
       views: path.resolve(__dirname, '../client/views'),
+      config: path.resolve(__dirname, '../config'),
       // third-party
       'plotly.js': 'plotly.js/dist/plotly',
       // vue-addon
