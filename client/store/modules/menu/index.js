@@ -1,7 +1,9 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-import lists from './lists'
+import list from './list'
 import characters from './characters'
+import goods from './goods'
+import user from './user'
 import charts from './charts'
 import uifeatures from './uifeatures'
 import components from './components'
@@ -22,8 +24,10 @@ const state = {
       },
       component: lazyLoading('dashboard', true)
     },
+    user,
     characters,
-    lists,
+    goods,
+    list,
     {
       name: '库房',
       path: '/storeroom',

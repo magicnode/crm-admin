@@ -12,7 +12,7 @@ export default {
 
   children: [
     {
-      name: 'Chartist',
+      name: '创建清单',
       path: 'chartist',
       component: lazyLoading('charts/Chartist'),
       meta: {
@@ -20,27 +20,11 @@ export default {
       }
     },
     {
-      name: 'Chartjs',
+      name: '查看清单',
       path: 'chartjs',
       component: lazyLoading('charts/Chartjs'),
       meta: {
         link: 'charts/Chartjs.vue'
-      }
-    },
-    {
-      name: 'Peity',
-      path: 'peity',
-      component: lazyLoading('charts/Peity'),
-      meta: {
-        link: 'charts/Peity.vue'
-      }
-    },
-    {
-      name: 'Plotly',
-      path: 'plotly',
-      component: lazyLoading('charts/Plotly'),
-      meta: {
-        link: 'charts/Plotly.vue'
       }
     }
   ]
