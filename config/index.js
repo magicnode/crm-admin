@@ -10,10 +10,16 @@ if (process.env.NODE_ENV === 'production') {
 
 const ApiStore = {
   characters: {
-    all: apiUrl + '/characters',
+    all: apiUrl + '/characters?permissions=1',
     CPermission: function (id) {
       return apiUrl + '/characters/' + id + '/permission'
+    },
+    noauthpermission: function (id) {
+      return apiUrl + '/characters/' + id + '/noauthpermission'
     }
+  },
+  permission: {
+    all: apiUrl + '/permission'
   }
 }
 
