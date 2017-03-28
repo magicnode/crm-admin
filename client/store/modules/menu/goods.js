@@ -2,29 +2,26 @@ import lazyLoading from './lazyLoading'
 
 export default {
   name: '物品管理',
-  path: '/charts',
   meta: {
     icon: 'fa-bar-chart-o',
-    expanded: false,
-    link: 'charts/index.vue'
+    expanded: false
   },
-  component: lazyLoading('charts', true),
 
   children: [
     {
-      name: '分类查看',
-      path: 'chartist',
-      component: lazyLoading('charts/Chartist'),
+      name: '添加新物品',
+      path: '/goods/add',
+      component: lazyLoading('goods/AddGoods'),
       meta: {
-        link: 'charts/Chartist.vue'
+        link: 'goods/AddGoods.vue'
       }
     },
     {
       name: '物品查看',
-      path: 'chartjs',
-      component: lazyLoading('charts/Chartjs'),
+      path: '/goods/list',
+      component: lazyLoading('goods/GoodsList'),
       meta: {
-        link: 'charts/Chartjs.vue'
+        link: 'goods/GoodsList.vue'
       }
     }
   ]

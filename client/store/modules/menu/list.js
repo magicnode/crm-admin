@@ -2,29 +2,26 @@ import lazyLoading from './lazyLoading'
 
 export default {
   name: '清单',
-  path: '/charts',
   meta: {
     icon: 'fa-bar-chart-o',
-    expanded: false,
-    link: 'charts/index.vue'
+    expanded: false
   },
-  component: lazyLoading('charts', true),
 
   children: [
     {
       name: '创建清单',
-      path: 'chartist',
-      component: lazyLoading('charts/Chartist'),
+      path: '/list/create',
+      component: lazyLoading('lists/CreateList'),
       meta: {
-        link: 'charts/Chartist.vue'
+        link: 'lists/CreateList.vue'
       }
     },
     {
       name: '查看清单',
-      path: 'chartjs',
-      component: lazyLoading('charts/Chartjs'),
+      path: '/list/check',
+      component: lazyLoading('lists/CheckList'),
       meta: {
-        link: 'charts/Chartjs.vue'
+        link: 'lists/CheckList.vue'
       }
     }
   ]

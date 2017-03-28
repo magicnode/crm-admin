@@ -20,6 +20,22 @@ const ApiStore = {
   },
   permission: {
     all: apiUrl + '/permission'
+  },
+  goods: {
+    post: apiUrl + '/goods',
+    list: apiUrl + '/goods'
+  },
+  lists: {
+    post: apiUrl + '/lists',
+    list: apiUrl + '/lists',
+    update: function (id) {
+      const url = apiUrl + '/lists/' + id
+      return url
+    },
+    show: function (id) {
+      const url = apiUrl + '/lists/' + id
+      return url
+    }
   }
 }
 

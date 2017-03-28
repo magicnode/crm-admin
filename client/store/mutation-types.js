@@ -9,3 +9,7 @@ export const SWITCH_EFFECT = 'SWITCH_EFFECT'
 export const GET_CHARACTER = 'GET_CHARACTER'
 
 export const GET_NOAUTHPERMISSION = 'GET_NOAUTHPERMISSION'
+
+export const GET_GOODS = 'GET_GOODS'
+
+export const GET_LISTS = 'GET_LISTS'
