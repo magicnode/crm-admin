@@ -13,6 +13,16 @@ export default new Router({
       path: '/',
       component: require('../views/Home')
     },
+    {
+      name: '登录',
+      path: '/login',
+      component: require('../views/user/Login')
+    },
+    {
+      name: '注册',
+      path: '/register',
+      component: require('../views/user/Register')
+    },
     ...generateRoutesFromMenu(menuModule.state.items),
     {
       path: '*',

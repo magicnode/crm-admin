@@ -1,9 +1,9 @@
 {
-  "name": "vue-admin",
+  "name": "goodscrm",
   "version": "0.1.12",
-  "description": "Vue Admin Panel Framework",
-  "repository": "vue-bulma/vue-admin",
-  "homepage": "https://admin.vuebulma.com",
+  "description": "高校低值易耗品管理系统",
+  "repository": "magicnode/crm-admin",
+  "homepage": "https://github.com/magicnode/crm-admin",
   "license": "MIT",
   "author": {
     "name": "Fangdun Cai",

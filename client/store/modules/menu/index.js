@@ -4,10 +4,10 @@ import list from './list'
 import characters from './characters'
 import goods from './goods'
 import user from './user'
-import charts from './charts'
-import uifeatures from './uifeatures'
-import components from './components'
-import tables from './tables'
+// import charts from './charts'
+// import uifeatures from './uifeatures'
+// import components from './components'
+// import tables from './tables'
 
 // show: meta.label -> name
 // name: component name
@@ -36,29 +36,29 @@ const state = {
         link: 'dashboard/index.vue'
       },
       component: lazyLoading('dashboard', true)
-    },
-    {
-      name: 'Dashboard',
-      path: '/dashboard',
-      meta: {
-        icon: 'fa-tachometer',
-        link: 'dashboard/index.vue'
-      },
-      component: lazyLoading('dashboard', true)
-    },
-    {
-      name: 'Axios',
-      path: '/axiosDemo',
-      meta: {
-        icon: 'fa-rocket',
-        link: 'axios/index.vue'
-      },
-      component: lazyLoading('axios', true)
-    },
-    charts,
-    uifeatures,
-    components,
-    tables
+    }
+    // {
+    //   name: 'Dashboard',
+    //   path: '/dashboard',
+    //   meta: {
+    //     icon: 'fa-tachometer',
+    //     link: 'dashboard/index.vue'
+    //   },
+    //   component: lazyLoading('dashboard', true)
+    // },
+    // {
+    //   name: 'Axios',
+    //   path: '/axiosDemo',
+    //   meta: {
+    //     icon: 'fa-rocket',
+    //     link: 'axios/index.vue'
+    //   },
+    //   component: lazyLoading('axios', true)
+    // },
+    // charts,
+    // uifeatures,
+    // components,
+    // tables
   ]
 }
 

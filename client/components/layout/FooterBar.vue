@@ -8,13 +8,7 @@
               <i class="fa fa-github"></i>
             </span>
           </a>
-          <a href="https://twitter.com/_fundon">
-            <span class="icon">
-              <i class="fa fa-twitter"></i>
-            </span>
-          </a>
         </p>
-        <p><span class="icon"><i class="fa fa-code"></i></span> with <span class="icon"><i class="fa fa-heart"></i></span> by <a href="https://github.com/fundon">fundon</a>.</p>
         <p>Code licensed under <a :href="'https://github.com/' + repository + '/blob/master/LICENSE'">{{ license }}</a>.</p>
       </div>
     </div>

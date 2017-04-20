@@ -16,8 +16,6 @@
                           <th>参考价格</th>
                           <th>单位</th>
                           <th>描述</th>
-                          <th>状态</th>
-                          <th>操作</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -33,13 +31,6 @@
                           </td>
                           <td>
                             {{ good.description }}
-                          </td>
-                          <td>
-                            未批
-                          </td>
-                          <td>
-                            <button class="btn">统购</button>
-                            <button class="btn">自购</button>
                           </td>
                         </tr>
                       </tbody>
@@ -83,12 +74,5 @@ export default {
 <style lang="scss" scoped>
 .tile.is-child {
   width: 100%;
-}
-
-.checklist {
-  color: #333;
-}
-
-.btn {
 }
 </style>

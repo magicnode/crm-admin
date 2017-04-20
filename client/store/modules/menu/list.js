@@ -18,6 +18,14 @@ export default {
     },
     {
       name: '查看清单',
+      path: '/list/read',
+      component: lazyLoading('lists/ReadList'),
+      meta: {
+        link: 'lists/ReadList.vue'
+      }
+    },
+    {
+      name: '清单审核',
       path: '/list/check',
       component: lazyLoading('lists/CheckList'),
       meta: {

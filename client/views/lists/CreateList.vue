@@ -34,15 +34,6 @@
                     <th>点击添加</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th>物品名</th>
-                    <th>参考价格</th>
-                    <th>单位</th>
-                    <th>描述</th>
-                    <th>点击添加</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   <tr v-for="good in goods">
                     <td>
@@ -80,14 +71,6 @@
                     <th>描述</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th>物品名</th>
-                    <th>参考价格</th>
-                    <th>单位</th>
-                    <th>描述</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   <tr v-for="good in sendList.goods">
                     <td>

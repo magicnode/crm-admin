@@ -2,7 +2,7 @@ import lazyLoading from './lazyLoading'
 
 export default {
   name: '用户信息',
-  path: '/characters',
+  path: '/user',
   meta: {
     icon: 'fa-bar-chart-o',
     expanded: false,
