@@ -31,16 +31,17 @@
                     <th>参考价格</th>
                     <th>单位</th>
                     <th>描述</th>
+                    <th>数量</th>
                     <th>点击添加</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="good in goods">
+                  <tr v-for="(good, index) in goods">
                     <td>
                       {{ good.name }}
                     </td>
                     <td>
-                      {{ good.price }}
+                      {{ '￥' + good.price  }}
                     </td>
                     <td>
                       {{ good.unit }}
@@ -49,7 +50,10 @@
                       {{ good.description }}
                     </td>
                     <td>
-                      <button class="button is-primary" @click="addGoodsToList(good._id)">添加</button>
+                      <input type="text" name="count" v-model="count[index]">
+                    </td>
+                    <td>
+                      <button class="button is-primary" @click="addGoodsToList(good._id, count[index])">添加</button> 
                     </td>
                   </tr>
                 </tbody>
@@ -145,6 +149,7 @@ export default {
       step3: false,
       list: '',
       sendList: {},
+      count: [],
       stepItems: [
         {
           title: '提交信息'
@@ -186,9 +191,10 @@ export default {
         })
       })
     },
-    addGoodsToList (goods) {
+    addGoodsToList (goods, val) {
       const list = this.list._id || 'asodsaio'
       const url = ApiStore.lists.update(list)
+      console.log('val', val)
       axios.put(url, {
         goods
       }).then(rs => {

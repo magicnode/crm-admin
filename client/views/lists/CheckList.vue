@@ -44,6 +44,7 @@
                         </tr>
                       </tbody>
                     </table>
+                    <button>审批结束，返回实验室</button>
                   </div>
                 </collapse>
               </collapse-item>

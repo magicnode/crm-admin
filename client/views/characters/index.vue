@@ -82,7 +82,6 @@ export default {
       const that = this
       characterApi.rmPermission({ permission, character })
                   .then(rs => {
-                    console.log('success', rs)
                     that.getAllCharacter()
                     const index = pers.indexOf(per)
                     pers.splice(index, 1)
