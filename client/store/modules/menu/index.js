@@ -1,14 +1,11 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-import list from './list'
 import characters from './characters'
 import goods from './goods'
 import user from './user'
-// import charts from './charts'
-// import uifeatures from './uifeatures'
-// import components from './components'
-// import tables from './tables'
-
+import list from './list'
+import college from './college'
+import material from './material'
 // show: meta.label -> name
 // name: component name
 // meta.label: display label
@@ -26,6 +23,8 @@ const state = {
     },
     user,
     characters,
+    college,
+    material,
     goods,
     list,
     {
@@ -33,9 +32,9 @@ const state = {
       path: '/storeroom',
       meta: {
         icon: 'fa-tachometer',
-        link: 'dashboard/index.vue'
+        link: 'storeroom/index.vue'
       },
-      component: lazyLoading('dashboard', true)
+      component: lazyLoading('storeroom', true)
     }
     // {
     //   name: 'Dashboard',
@@ -45,20 +44,7 @@ const state = {
     //     link: 'dashboard/index.vue'
     //   },
     //   component: lazyLoading('dashboard', true)
-    // },
-    // {
-    //   name: 'Axios',
-    //   path: '/axiosDemo',
-    //   meta: {
-    //     icon: 'fa-rocket',
-    //     link: 'axios/index.vue'
-    //   },
-    //   component: lazyLoading('axios', true)
-    // },
-    // charts,
-    // uifeatures,
-    // components,
-    // tables
+    // }
   ]
 }
 

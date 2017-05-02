@@ -1,7 +1,7 @@
 import lazyLoading from './lazyLoading'
 
 export default {
-  name: '物品管理',
+  name: '库房',
   meta: {
     icon: 'fa-bar-chart-o',
     expanded: false

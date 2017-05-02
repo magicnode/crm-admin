@@ -14,14 +14,6 @@
                   <th>添加</th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th>权限名</th>
-                  <th>权限对应路由</th>
-                  <th>权限操作</th>
-                  <th>添加</th>
-                </tr>
-              </tfoot>
               <tbody>
                 <tr v-for="permission in permissions">
                   <td>

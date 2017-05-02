@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <p>用户名： 吉拉斯</p>
+    <p>用户名： publi</p>
     <p>所属院系： 法学院</p>
     <p>角色： 校长</p>
   </div>
