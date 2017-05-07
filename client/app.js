@@ -8,6 +8,10 @@ import store from './store'
 import * as filters from './filters'
 import { TOGGLE_SIDEBAR } from 'vuex-store/mutation-types'
 
+import magic from './plugins'
+
+Vue.prototype.$magic = magic
+
 Vue.prototype.$http = axios
 Vue.axios = axios
 Vue.use(NProgress)

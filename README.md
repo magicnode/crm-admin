@@ -15,6 +15,10 @@ vue-router
 
 vue-admin
 
+https://github.com/vue-bulma/vue-admin
+
+https://admin.vuebulma.com/#/
+
 ## todo
 
 材料管理科

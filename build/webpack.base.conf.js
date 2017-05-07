@@ -41,18 +41,23 @@ module.exports = {
       'vuex-store': path.resolve(__dirname, '../client/store')
     }
   },
+  externals: [
+    {
+      "window": "window"
+    }
+  ],
   module: {
     loaders: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        include: projectRoot,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   include: projectRoot,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader',

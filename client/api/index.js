@@ -3,6 +3,7 @@ if (process.env.NODE_ENV === 'production') {
   apiUrl = 'http://192.168.0.201:8890'
 }
 
+
 export const characters = {
   all: apiUrl + '/characters?permissions=1',
   CPermission: function (id) {
@@ -30,7 +31,17 @@ export const lists = {
 	  return url
 	},
 	show: function (id) {
-	  const url = apiUrl + '/lists/' + id
-	  return url
-	}
+    const url = apiUrl + '/lists/' + id
+    return url
+  }
+}
+
+export const labs = {
+  index: apiUrl + '/labs'
+}
+
+export const users = {
+  index: apiUrl + '/users',
+  register: apiUrl + '/users',
+  auth: apiUrl + '/auth'
 }
