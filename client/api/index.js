@@ -18,8 +18,8 @@ export const permission = {
 }
 
 export const goods = {
-	post: apiUrl + '/goods',
-	list: apiUrl + '/goods'
+	index: apiUrl + '/goods',
+  post: apiUrl + '/goods'
 }
 
 export const lists = {
@@ -46,5 +46,6 @@ export const users = {
 }
 
 export const term = {
-  index: apiUrl + '/terms'
+  index: apiUrl + '/terms',
+  create: apiUrl + '/terms'
 }

@@ -129,7 +129,7 @@ const openMessage = (propsData = {
 
 export default {
   created () {
-    this.getAllGoods()
+    this.setGoods()
   },
   components: {
     ProgressTracker,
@@ -137,7 +137,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'goods': 'getAllGoods'
+      'goods': 'getGoods'
     })
   },
   data () {
@@ -165,7 +165,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getAllGoods'
+      'setGoods'
     ]),
     submitInfo () {
       const url = ApiStore.lists.post

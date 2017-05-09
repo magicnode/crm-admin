@@ -40,8 +40,9 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  created () {
-    this.getAllGoods()
+  async created () {
+    const res = await this.setGoods()
+    this.$magic.toast.show(res)
   },
   data () {
     return {
@@ -49,12 +50,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'goods': 'getAllGoods'
+      'goods': 'getGoods'
     })
   },
   methods: {
     ...mapActions([
-      'getAllGoods'
+      'setGoods'
     ])
   }
 }

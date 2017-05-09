@@ -1,27 +1,57 @@
-import goods from '../../api/goods'
+import { goods as goodsApi } from 'src/api'
+import axios from 'axios'
+import window from 'window'
+
 import * as types from '../mutation-types'
 
 const state = {
-  goods: []
+  data: []
 }
+
+let local = window.localStorage
+
+let instance = axios.create({
+  timeout: 2000,
+  headers: {
+    Authorization: local.token
+  }
+})
 
 // getters
 const getters = {
-  getAllGoods: state => state.goods
+  getGoods: state => state.data
 }
 
 // actions
 const actions = {
-  getAllGoods ({ commit }) {
-    goods.getAllGoods().then(rs => {
-      commit(types.GET_GOODS, { goods: rs.data })
-    })
+  async setGoods ({ commit }) {
+    try {
+      const res = await instance.get(goodsApi.index)
+      if (res.status !==200) {
+        return {
+          message: 'fail',
+          type: 'warn'
+        }
+      }
+      let data = res.data
+      commit(types.SET_GOODS, { data })
+      return {
+        message: 'success',
+        type: 'success'
+      }
+    } catch (err) {
+      console.log(err)
+      return {
+        message: 'fail',
+        type: 'warn'
+      }
+    }
   }
 }
 
 const mutations = {
-  [types.GET_GOODS] (state, { goods }) {
-    state.goods = goods
+  [types.SET_GOODS] (state, { data }) {
+    state.data = data
   }
 }
 

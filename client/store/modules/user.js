@@ -1,12 +1,14 @@
 import { users as usersApi } from 'src/api'
 import axios from 'axios'
-import * as types from '../mutation-types'
-
 import window from 'window'
+import * as types from '../mutation-types'
 
 let local = window.localStorage
 let instance = axios.create({
-  timeout: 2000
+  timeout: 2000,
+  headers: {
+    Authorization: local.token
+  }
 })
 
 const state = {

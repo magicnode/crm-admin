@@ -14,8 +14,10 @@ export const GET_CHARACTER = 'GET_CHARACTER'
 
 export const GET_NOAUTHPERMISSION = 'GET_NOAUTHPERMISSION'
 
-export const GET_GOODS = 'GET_GOODS'
+export const SET_GOODS = 'SET_GOODS'
 
 export const GET_LISTS = 'GET_LISTS'
 
 export const SET_LABS = 'SET_LABS'
+
+export const SET_TERMS = 'SET_TERMS'
