@@ -7,19 +7,23 @@
           <div class="block is-flex">
             <collapse accordion is-fullwidth>
               <collapse-item v-for="item in lists" :key="item._id" :title="item.name">
+                <span>{{item.status | liststatus}}</span>
+                <p>{{ item.lab ? item.lab.name : '' }}</p>
+                <p>{{ item.term ? item.term.name : '' }}</p>
                 <collapse>
                   <div class="table-responsive">
                     <table class="table is-bordered is-striped is-narrow">
                       <thead>
                         <tr>
                           <th>物品名</th>
-                          <th>参考价格</th>
+                          <th>价格(￥)</th>
                           <th>单位</th>
-                          <th>描述</th>
+                          <th>数量</th>
+                          <th>分类</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="good in item.goods">
+                        <tr v-for="good in item.listgoods">
                           <td>
                             {{ good.name }}
                           </td>
@@ -30,7 +34,10 @@
                             {{ good.unit }}
                           </td>
                           <td>
-                            {{ good.description }}
+                            {{ good.count }}
+                          </td>
+                          <td>
+                            {{ good.status | goodsstatus }}
                           </td>
                         </tr>
                       </tbody>
@@ -52,6 +59,7 @@ import { Collapse, Item as CollapseItem } from 'vue-bulma-collapse'
 
 export default {
   created () {
+    this.setLists()
   },
   computed: {
     ...mapGetters({

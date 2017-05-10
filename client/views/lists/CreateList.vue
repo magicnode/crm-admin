@@ -62,7 +62,7 @@
                       <input type="text" name="count" v-model="count[index]">
                     </td>
                     <td>
-                      <button class="button is-primary" @click="addGoodsToList(good._id, count[index])">添加</button> 
+                      <button class="button is-primary" @click="addGoodsToList(good._id, good.name, good.price, good.unit, count[index])">添加</button> 
                     </td>
                   </tr>
                 </tbody>
@@ -179,7 +179,8 @@ export default {
       'setGoods',
       'setList',
       'createList',
-      'updateList'
+      'updateList',
+      'submitList'
     ]),
     async submitInfo () {
       const res = await this.createList({
@@ -192,7 +193,7 @@ export default {
       this.step2 = true
       return
     },
-    async addGoodsToList (goods, count) {
+    async addGoodsToList (goods, name, price, unit, count) {
       const {_id} = this.list
       if (!_id) {
         this.$magic.toast.show({
@@ -204,6 +205,9 @@ export default {
       const res = await this.updateList({
         _id,
         goods,
+        name,
+        price,
+        unit,
         count
       })
       this.$magic.toast.show(res)
@@ -218,8 +222,10 @@ export default {
       this.step3 = true
       return
     },
-    sendListTo () {
-      this.$router.push({path: '/'})
+    async sendListTo () {
+      const res = await this.submitList({_id: this.list._id, status: 1})
+      this.$magic.toast.show(res)
+      return
     }
   }
 

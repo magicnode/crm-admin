@@ -4,7 +4,7 @@ export default {
   name: '用户信息',
   path: '/user',
   meta: {
-    icon: 'fa-bar-chart-o',
+    icon: 'fa-tachometer',
     expanded: false,
     link: 'user/Info.vue'
   },

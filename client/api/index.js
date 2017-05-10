@@ -38,14 +38,27 @@ export const lists = {
   }
 }
 
+export const listgoods = {
+  index: apiUrl + '/listgoods',
+  show: function (id) {
+    const url = apiUrl + '/listgoods/' + id
+    return url
+  }
+}
+
 export const labs = {
-  index: apiUrl + '/labs'
+  index: apiUrl + '/labs',
+  show: function (id) {
+    const url = apiUrl + '/labs/' + id
+    return url
+  }
 }
 
 export const users = {
   index: apiUrl + '/users',
   register: apiUrl + '/users',
-  auth: apiUrl + '/auth'
+  auth: apiUrl + '/auth',
+  authcheck: apiUrl + '/auth/check'
 }
 
 export const term = {

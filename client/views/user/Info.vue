@@ -2,21 +2,26 @@
   <div class="info">
     <p>用户名： {{user.name}}</p>
     <p>昵称： {{user.username}}</p>
-    <p>所属院系： {{user.lab.name}}</p>
+    <p>所属实验室： {{user.lab.name}}</p>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	created () {
-		console.log('sad', this.user)
+		this.setUser()
 	},
 	computed: {
 		...mapGetters({
 			user: 'getUser'
 		})
+	},
+	methods: {
+		...mapActions([
+			'setUser'
+		])
 	}
 }
 </script>

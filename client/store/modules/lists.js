@@ -1,4 +1,4 @@
-import { lists as listsApi } from 'src/api'
+import { lists as listsApi, listgoods as listgoodsApi } from 'src/api'
 import axios from 'axios'
 import window from 'window'
 import * as types from '../mutation-types'
@@ -102,11 +102,11 @@ const actions = {
       }
     }
   },
-  async updateList ({ commit }, { _id, goods, count }) {
+  async updateList ({ commit }, { _id, name, goods, price, unit, count }) {
     try {
       console.log(`_id is ${_id}, goods is ${goods}, count is ${count}`)
       const res = await instance.patch(listsApi.show(_id), {
-        goods, count
+        goods, name, price, unit, count
       })
       console.log('qwe123', res.data)
       if (res.status === 200) {
@@ -127,13 +127,39 @@ const actions = {
       }
     }
   },
-  async submitList ({ commit }, { _id }) {
+  async submitList ({ dispatch, commit }, { _id, status, material_status }) {
     try {
       const res = await instance.patch(listsApi.show(_id), {
-        status: 1
+        status,
+        material_status
       })
       if (res.status === 200) {
-        commit(types.SET_CREATE_LIST, { createlist: res.data })
+        await dispatch('setList', {_id})
+        return {
+          message: '提交成功， 等待审核',
+          type: 'success'
+        }
+      }
+      return {
+        message: 'fail',
+        type: 'warn'
+      }
+    } catch (e) {
+      console.error(e)
+      return {
+        message: 'fail',
+        type: 'warn'
+      }
+    }
+  },
+  async updateListGoods ({ dispatch, commit }, { _id, status, material_status }) {
+    try {
+      const res = await instance.patch(listgoodsApi.show(_id), {
+        status,
+        material_status
+      })
+      if (res.status === 200) {
+        await dispatch('setLists')
         return {
           message: 'success',
           type: 'success'

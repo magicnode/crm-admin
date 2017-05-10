@@ -4,7 +4,7 @@ import characters from './characters'
 import goods from './goods'
 import user from './user'
 import list from './list'
-import college from './college'
+import labs from './labs'
 import material from './material'
 // show: meta.label -> name
 // name: component name
@@ -12,18 +12,9 @@ import material from './material'
 
 const state = {
   items: [
-    {
-      name: '主页',
-      path: '/main',
-      meta: {
-        icon: 'fa-tachometer',
-        link: 'dashboard/index.vue'
-      },
-      component: lazyLoading('dashboard', true)
-    },
     user,
     characters,
-    college,
+    labs,
     material,
     goods,
     list,

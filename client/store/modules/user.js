@@ -88,12 +88,38 @@ const actions = {
         type: 'warn'
       }
     }
+  },
+  async setUser ({ commit } ) {
+    try {
+      const res = await instance.post(usersApi.authcheck)
+      if (res.status !== 200) {
+        return {
+          title: '登录结果',
+          message: '登录失败',
+          type: 'warn'
+        }
+      }
+      const data = res.data
+      console.log('data', data)
+      commit(types.SET_USER, {user: data})
+      return {
+        title: '登录结果',
+        message: '登录成功',
+        type: 'success'
+      }
+    } catch (err) {
+      console.log(err)
+      return {
+        title: '登录结果',
+        message: '登录失败',
+        type: 'warn'
+      } 
+    }
   }
 }
 
 const mutations = {
   [types.SET_USER] (state, { user }) {
-    console.log('data', user)
     state.user = user
   }
 }
