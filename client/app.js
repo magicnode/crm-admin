@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import window from 'window'
 import NProgress from 'vue-nprogress'
 import { sync } from 'vuex-router-sync'
 import App from './App.vue'
@@ -28,6 +29,13 @@ const { state } = store
 router.beforeEach((route, redirect, next) => {
   if (state.app.device.isMobile && state.app.sidebar.opened) {
     store.commit(TOGGLE_SIDEBAR, false)
+  }
+  const token = window.localStorage.token
+  if (!token&&(route.path !== '/login')) {
+  	console.log('res', redirect)
+  	store.commit(TOGGLE_SIDEBAR, false)
+  	// redirect.path = '/login'
+  	router.push({path: '/login'})
   }
   next()
 })
