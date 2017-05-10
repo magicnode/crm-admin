@@ -12,6 +12,15 @@
           </div>
           <div class="block" v-if="step1">
             <p class="control">
+              <span class="select">
+                <select v-model="term">
+                  <option disabled selected>选择所属学期，不选则默认当前学期</option>
+                  <option v-for="item in terms" :key="item._id" :value="item._id">{{item.name}}</option>
+                </select>
+              </span>
+              <p style="padding-bottom: 6px;"><small>清单所属实验室将是当前登录人所属实验室</small></p>
+            </p>
+            <p class="control">
               <input class="input is-primary" v-model="name" type="text" placeholder="清单名字">
             </p>
             <p class="control">
@@ -59,35 +68,32 @@
                 </tbody>
               </table>
             </div>
-            <button class="button is-success" @click="jumpToStep()">完成</button>
+            <button class="button is-success" @click="jumpToSubmit">下一步(查看)</button>
           </div>
 
           <div class="block" v-if="step3">
-            <h1>{{ '清单名:' + sendList.name }}</h1>
-            <h1>{{ sendList.description }}</h1>
+            <h1>最終审核</h1>
+            <h1>{{ '清单名:' + list.name }}</h1>
+            <h1>{{ '描述' + list.description }}</h1>
             <div class="table-responsive">
               <table class="table is-bordered is-striped is-narrow">
                 <thead>
                   <tr>
                     <th>物品名</th>
-                    <th>参考价格</th>
-                    <th>单位</th>
-                    <th>描述</th>
+                    <th>价格(￥)</th>
+                    <th>个数</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="good in sendList.goods">
+                  <tr v-for="good in list.listgoods">
                     <td>
-                      {{ good.name }}
+                      {{ good.goods.name }}
                     </td>
                     <td>
-                      {{ good.price }}
+                      {{ good.goods.price }}
                     </td>
                     <td>
-                      {{ good.unit }}
-                    </td>
-                    <td>
-                      {{ good.description }}
+                      {{ good.count }}
                     </td>
                   </tr>
                 </tbody>
@@ -129,7 +135,10 @@ const openMessage = (propsData = {
 
 export default {
   created () {
-    this.getAllGoods()
+    if (this.terms.length <= 0) {
+      this.setTerms()
+    }
+    this.setGoods()
   },
   components: {
     ProgressTracker,
@@ -137,18 +146,19 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'goods': 'getAllGoods'
+      'goods': 'getGoods',
+      'terms': 'getTerms',
+      'list': 'getCreateList'
     })
   },
   data () {
     return {
+      term: '选择所属学期，不选则默认当前学期',
       name: '',
       description: '',
       step1: true,
       step2: false,
       step3: false,
-      list: '',
-      sendList: {},
       count: [],
       stepItems: [
         {
@@ -165,75 +175,48 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getAllGoods'
+      'setTerms',
+      'setGoods',
+      'setList',
+      'createList',
+      'updateList'
     ]),
-    submitInfo () {
-      const url = ApiStore.lists.post
-      axios.post(url, {
+    async submitInfo () {
+      const res = await this.createList({
         name: this.name,
-        description: this.description
-      }).then(rs => {
-        console.log('rs', rs)
-        this.list = rs.data
-        openMessage({
-          message: '清单初步创建成功，请添加审核物品',
-          type: 'success',
-          duration: 1500
-        })
-        this.step1 = false
-        this.step2 = true
-      }).catch(err => {
-        console.error(err)
-        openMessage({
-          message: '清单创建失败，请审核信息',
-          type: 'fail',
-          duration: 2000
-        })
+        description: this.description,
+        term: (this.term === '选择所属学期，不选则默认当前学期') ? this.terms[0] : this.term
       })
+      this.$magic.toast.show(res)
+      this.step1 = false
+      this.step2 = true
+      return
     },
-    addGoodsToList (goods, val) {
-      const list = this.list._id || 'asodsaio'
-      const url = ApiStore.lists.update(list)
-      console.log('val', val)
-      axios.put(url, {
-        goods
-      }).then(rs => {
-        console.log('rs', rs)
-        openMessage({
-          message: '清单初步创建成功，请添加审核物品',
-          type: 'success',
-          duration: 1500
+    async addGoodsToList (goods, count) {
+      const {_id} = this.list
+      if (!_id) {
+        this.$magic.toast.show({
+          type: 'warning',
+          message: 'no id fail'
         })
-      }).catch(err => {
-        console.error(err)
-        openMessage({
-          message: '添加物品失败',
-          type: 'fail',
-          duration: 2000
-        })
+        return
+      }
+      const res = await this.updateList({
+        _id,
+        goods,
+        count
       })
+      this.$magic.toast.show(res)
+      return
     },
-    jumpToStep (step) {
+    async jumpToSubmit () {
+      const res = await this.setList({_id: this.list._id})
+      this.$magic.toast.show(res)
+      console.log('asd', this.list)
+      this.step1 = false
       this.step2 = false
       this.step3 = true
-      const list = this.list._id || 'asodsaio'
-      const url = ApiStore.lists.show(list)
-      axios.get(url).then(rs => {
-        console.log('rs', rs)
-        openMessage({
-          message: '清单创建成功，准备发送审核',
-          type: 'success',
-          duration: 1500
-        })
-        this.sendList = rs.data
-      }).catch(err => {
-        console.error(err)
-        openMessage({
-          message: '添加物品失败',
-          type: 'fail',
-          duration: 2000
-        })
-      })
+      return
     },
     sendListTo () {
       this.$router.push({path: '/'})

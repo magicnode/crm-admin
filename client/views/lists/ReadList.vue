@@ -52,16 +52,15 @@ import { Collapse, Item as CollapseItem } from 'vue-bulma-collapse'
 
 export default {
   created () {
-    this.getAllLists()
   },
   computed: {
     ...mapGetters({
-      lists: 'getAllLists'
+      lists: 'getLists'
     })
   },
   methods: {
     ...mapActions([
-      'getAllLists'
+      'setLists'
     ])
   },
   components: {

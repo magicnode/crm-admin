@@ -1,12 +1,14 @@
 import { users as usersApi } from 'src/api'
 import axios from 'axios'
-import * as types from '../mutation-types'
-
 import window from 'window'
+import * as types from '../mutation-types'
 
 let local = window.localStorage
 let instance = axios.create({
-  timeout: 2000
+  timeout: 2000,
+  headers: {
+    Authorization: local.token
+  }
 })
 
 const state = {
@@ -71,7 +73,7 @@ const actions = {
         }
       }
       const data = res.data
-      commit(types.SET_USER, {user: data.user})
+      commit(types.SET_USER, {user: data})
       local.setItem('token', data.token)
       return {
         title: '注册结果',
@@ -91,6 +93,7 @@ const actions = {
 
 const mutations = {
   [types.SET_USER] (state, { user }) {
+    console.log('data', user)
     state.user = user
   }
 }

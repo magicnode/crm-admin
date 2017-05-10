@@ -11,6 +11,7 @@ import user from './modules/user'
 import goods from './modules/goods'
 import lists from './modules/lists'
 import labs from './modules/labs'
+import terms from './modules/terms'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ const store = new Vuex.Store({
     character,
     goods,
     lists,
-    labs
+    labs,
+    terms
   },
   state: {
     pkg

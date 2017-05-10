@@ -8,24 +8,29 @@
               <thead>
                 <tr>
                   <th>物品名</th>
-                  <th>参考价格</th>
+                  <th>参考价格(￥)</th>
                   <th>单位</th>
                   <th>描述</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="good in goods">
+                <tr v-for="good in goods" :key="good._id">
                   <td>
-                    {{ good.name }}
+                    <input type="text" name="" :value="good.name">
                   </td>
                   <td>
-                    {{ good.price }}
+                    <input type="text" name="" :value="good.price">
                   </td>
                   <td>
-                    {{ good.unit }}
+                    <input type="text" name="" :value="good.unit">
                   </td>
                   <td>
-                    {{ good.description }}
+                  <input type="text" name="" :value="good.description">
+                  </td>
+                  <td>
+                    <span @click="edit(good._id, $event)"  class="icon is-small"><i class="fa fa-save"></i></span>
+                    <span @click="delGoods({_id: good._id})" class="icon is-small"><i class="fa fa-close"></i></span>
                   </td>
                 </tr>
               </tbody>
@@ -40,8 +45,11 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  created () {
-    this.getAllGoods()
+  async created () {
+    if (this.goods.length <= 0) {
+      const res = await this.setGoods()
+      this.$magic.toast.show(res)
+    }
   },
   data () {
     return {
@@ -49,19 +57,60 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'goods': 'getAllGoods'
+      'goods': 'getGoods'
     })
   },
   methods: {
     ...mapActions([
-      'getAllGoods'
-    ])
+      'setGoods',
+      'updateGoods',
+      'deleteGoods'
+    ]),
+    async edit (_id, event) {
+      const act = confirm('确定更新这一物品吗?')
+      if (!act) return
+      const $good = $(event.target).parent().parent().parent()
+      const $input = $good.find('input')
+      const name = $input.eq(0).prop('value')
+      const price = $input.eq(1).prop('value')
+      const unit = $input.eq(2).prop('value')
+      const description = $input.eq(3).prop('value')
+      if (!(name&&price&&unit)) {
+        this.$magic.toast.show({
+          message: '除描述外不能有空',
+          type: 'warning'
+        })
+        return
+      }
+      const res = await this.updateGoods({
+        _id, name, price, unit, description
+      })
+      return this.$magic.toast.show(res)
+    },
+    async delGoods ({_id}) {
+      const act = confirm('确定删除这一物品吗?')
+      if (!act) return
+      const res = await this.deleteGoods({_id})
+      this.$magic.toast.show(res)
+      return
+    }
   }
 }
 </script>
 
-<style>
+<style scoped lang="less">
   footer.modal-card-foot {
     display: none;
+  }
+  table {
+    tr {
+      td {
+        vertical-align: middle;
+        input {
+          width: 100%;
+          padding: 3px;
+        }
+      }
+    }
   }
 </style>

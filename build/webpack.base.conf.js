@@ -1,5 +1,6 @@
 'use strict'
-
+// 在开头引入webpack，后面的plugins那里需要
+const webpack = require('webpack')
 const path = require('path')
 const config = require('../config')
 const utils = require('./utils')
@@ -45,6 +46,13 @@ module.exports = {
     {
       "window": "window"
     }
+  ],
+  // 增加一个plugins
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
   ],
   module: {
     loaders: [

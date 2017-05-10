@@ -65,7 +65,6 @@ export default {
     open (url) {
       window.open(url)
     },
-
     close () {
       this.$emit('close')
     },

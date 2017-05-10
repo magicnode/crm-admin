@@ -18,11 +18,14 @@ export const permission = {
 }
 
 export const goods = {
-	post: apiUrl + '/goods',
-	list: apiUrl + '/goods'
+  index: apiUrl + '/goods',
+	show: function (_id) {
+    return apiUrl + '/goods/' + _id
+  }
 }
 
 export const lists = {
+  index: apiUrl + '/lists',
 	post: apiUrl + '/lists',
 	list: apiUrl + '/lists',
 	update: function (id) {
@@ -46,5 +49,6 @@ export const users = {
 }
 
 export const term = {
-  index: apiUrl + '/terms'
+  index: apiUrl + '/terms',
+  create: apiUrl + '/terms'
 }

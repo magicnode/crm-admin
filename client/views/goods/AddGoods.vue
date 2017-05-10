@@ -19,7 +19,7 @@
               <input class="input is-success" type="text" v-model="description" placeholder="描述">
             </p>
             <p class="control">
-              <button class="button is-primary" @click="addGoods">创建</button>
+              <button class="button is-primary" @click="add">创建</button>
             </p>
           </div>
         </article>
@@ -32,8 +32,7 @@
 </template>
 
 <script>
-import { ApiStore } from 'config'
-import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
@@ -44,20 +43,25 @@ export default {
       unit: ''
     }
   },
-
   methods: {
-    addGoods () {
-      const url = ApiStore.goods.post
-      axios.post(url, {
+    ...mapActions([
+      'createGoods'
+    ]),
+    async add () {
+      if (!(this.name&&this.price&&this.unit)) {
+        this.$magic.toast.show({
+          type: 'warn',
+          message: '不能有空'
+        })
+        return
+      }
+      const res = await this.createGoods({
         name: this.name,
         price: this.price,
-        description: this.description,
-        unit: this.unit
-      }).then(rs => {
-        console.log('rs', rs)
-      }).catch(err => {
-        console.error(err)
+        unit: this.unit,
+        description: this.description
       })
+      this.$magic.toast.show(res)
     }
   }
 }
