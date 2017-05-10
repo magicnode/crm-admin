@@ -5,13 +5,14 @@ import * as types from '../mutation-types'
 const state = {
   terms: []
 }
+
 let instance = axios.create({
   timeout: 2000
 })
 
 // getters
 const getters = {
-  getLabs: state => state.labs
+  getTerm: state => state.terms
 }
 
 // actions
